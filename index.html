@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Julia Plotly</title>
+</head>
+
+<body>
+  <style>
+    #plotly {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      width: 1216px;
+      margin: 0 auto;
+    }
+    #plotly > div {
+      width: 100%;
+      min-height: 400px; /* adjust as needed */
+    }
+    @media (max-width: 600px) {
+      #plotly {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <div id="plotly"></div>
+
+  <script src='https://cdn.plot.ly/plotly-3.1.0.min.js'></script>
+  <script src='//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+
+  <script>
+    function plot(name) {
+      let div = document.getElementById("plotly");
+      let plot_div = document.createElement("div");
+      plot_div.id = name;
+      div.appendChild(plot_div);
+      fetch(name + '.json')
+        .then(res => res.json())
+        .then(json => {
+          let all = json;
+          console.log(all)
+          Plotly.react(name, all.data, all.layout || {}, all.config || {});
+        })
+        .catch(err => console.error(`Failed to load ${name}.json:`, err));
+    }
+
+    plot("Profits CA")
+    plot("Profits OS")
+    plot("Profits Delta")
+    plot("Profits Delta percentage")
+    plot("Sample Size CA")
+    plot("Sample Size OS")
+    plot("Sample Size Delta")
+    plot("Time of Interim Analysis CA")
+    plot("Sample Size at Interim Analysis CA")
+    plot("$q^{OS} - q_1^{CA}$")
+
+  </script>
+</body>
+
+</html>
