@@ -13,12 +13,12 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 16px;
-      width: 1216px;
+      width: 1016px;
       margin: 0 auto;
     }
     #plotly > div {
       width: 100%;
-      min-height: 400px; /* adjust as needed */
+      min-height: 500px; /* adjust as needed */
     }
     @media (max-width: 600px) {
       #plotly {
@@ -57,7 +57,7 @@
     plot("Sample Size Delta")
     plot("Time of Interim Analysis CA")
     plot("Sample Size at Interim Analysis CA")
-    plot("$q^{OS} - q_1^{CA}$")
+    plot("$q_1^{CA} - q^{OS}$")
 
   </script>
 </body>
